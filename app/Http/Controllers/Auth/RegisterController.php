@@ -62,10 +62,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Route::get('/register','RegisterController@create');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function register()
+    {
+        return view('register.register');
+    }
+
+    public function save()
+    {
+        //|unique:users
+        $this->validate(request(),[
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed'
+        ]);
+
+
+        $user = User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt(request('password'))
+        ]);
+        
+        auth()->login($user);
+
+        session()->flash('message','Welcome!');
+        
+        return redirect()->route('home');
     }
 }

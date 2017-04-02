@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/my-dashboard';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,24 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    public function dashboard()
+    {
+        if (auth()->attempt(request(['email','password']))) 
+        {
+            session()->flash('message','Logged in');
+
+            return view('user.dashboard');
+        }
+        else
+        {
+            return back()->withErrors(['message' => 'Incorrect details']); 
+        }
+    }
+
+    public function login()
+    {
+        return view('login.login');
     }
 }
