@@ -1,4 +1,6 @@
-@include('structure.top')
+@extends('structure.top')
+
+@section('title','Register')
 
 <div class="container login-form">
     <h2 class="login-title">- Register -</h2>

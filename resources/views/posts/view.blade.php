@@ -1,6 +1,8 @@
-@include('structure.top')       
+@extends('structure.top')       
 	@include('structure.nav') 
-	@include('structure.messages')
+	@extends('structure.messages')
+
+	@section('title','View Post')
 
 	<div class='container'>
 		<div class='row'>
@@ -52,4 +54,4 @@
 		var url = "{{ route('home') }}";
 	</script>
 	
-@include('structure.footer')
+@extends('structure.footer')

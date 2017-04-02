@@ -1,6 +1,8 @@
-@include('structure.top')       
+@extends('structure.top')       
 	@include('structure.nav') 
-	@include('structure.messages')
+	@extends('structure.messages')
+
+	@section('title','Edit Post')
 
 	<div class='container'>
 		<div class='row'>
@@ -38,4 +40,4 @@
 		</div>
 	</div>
 
-@include('structure.footer')
+@extends('structure.footer')

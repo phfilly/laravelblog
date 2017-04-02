@@ -1,9 +1,6 @@
-@include('structure.top')
+@extends('structure.top')
 
-@section('title')
-	@parent
-		Login
-@stop
+@section('title','Login')
 
 <div class="container login-form">
 	<h2 class="login-title">- Login -</h2>
@@ -40,4 +37,4 @@
 	</div>
 </div>
 
-@include('structure.footer')
+@extends('structure.footer')

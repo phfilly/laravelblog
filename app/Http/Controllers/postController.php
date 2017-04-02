@@ -27,7 +27,7 @@ class postController extends Controller
 
    	public function viewAllPosts()
    	{	
-   		$posts = DB::table('posts')->get();
+   		//$posts = DB::table('posts')->get();
 
    		/*$posts = DB::table('posts')
    					->select('')
@@ -35,6 +35,7 @@ class postController extends Controller
    					->get();*/
 
    		//$posts = Post::with('posts')->get();
+   		$posts = Post::orderBy('id','desc')->paginate(5);
 
    		return view('welcome', ['posts' => $posts]);
    	}
@@ -68,7 +69,7 @@ class postController extends Controller
    		$posts = DB::table('posts')
    				->where('user_id','=',\Auth::user()->id)
    				->get();
-   				
+
    		return view('welcome', ['posts' => $posts]);
    	}
 

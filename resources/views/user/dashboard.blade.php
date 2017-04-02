@@ -1,10 +1,11 @@
-@include('structure.top')
+@extends('structure.top')
   @include('structure.nav') 
 
+  @section('title','Dashboard')
   <div class='container'>
     <div class='row'>
 
-      @include('structure.errors')
+      @extends('structure.errors')
 
       <h1>My Profile</h1>
 
@@ -40,4 +41,4 @@
     </div>
   </div>
 
-@include('structure.footer')
+@extends('structure.footer')
