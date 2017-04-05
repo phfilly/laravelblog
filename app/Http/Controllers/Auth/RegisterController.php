@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Mail\Welcome;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -92,6 +94,8 @@ class RegisterController extends Controller
         ]);
         
         auth()->login($user);
+
+        \Mail::to($user)->send(new Welcome);
 
         session()->flash('message','Welcome!');
         

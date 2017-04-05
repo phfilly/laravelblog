@@ -27,15 +27,12 @@ class postController extends Controller
 
    	public function viewAllPosts()
    	{	
-   		//$posts = DB::table('posts')->get();
-
    		/*$posts = DB::table('posts')
    					->select('')
    					->join('users','users.id','=','posts.user_id')
    					->get();*/
 
-   		//$posts = Post::with('posts')->get();
-   		$posts = Post::orderBy('id','desc')->paginate(5);
+   	  $posts = Post::orderBy('created_at','desc')->paginate(5);
 
    		return view('welcome', ['posts' => $posts]);
    	}

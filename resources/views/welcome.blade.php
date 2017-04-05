@@ -12,21 +12,27 @@
 				</div>
 				<div class='panel-body'>
 
-					@foreach($posts as $post)
-						<div class='list-group'>
-							<div class='list-group-item'>
-								<h1 class='text-uppercase'>{{ $post->id }}. {{ $post->title }}</h1>
-								<small>
-									{{ date('M j, Y H:ia', strtotime($post->created_at)) }} by {{ $post->user_id }}
-								</small> <!--user->name -->
-							</div>
-							<div class='list-group-item'>
-								<p>{{ substr($post->body,0,350) }} {{ strlen($post->body) > 350 ? '...' : "" }}</p>
+					@if ( !$posts->count() )
+						There is no posts to show. Login and write a new post
+					@else
+						@foreach($posts as $post)
+							<div class='list-group'>
+								<div class='list-group-item'>
+									<h1 class='text-uppercase'>{{ $post->id }}. {{ $post->title }}</h1>
+									<small>
+										{{ date('M j, Y H:ia', strtotime($post->created_at)) }} by 
+											<a href="{{ url('/user/'.$post->user_id)}}"><strong>{{ ucfirst($post->author->name) }}</strong></a>
+									</small> <!--user->name -->
+								</div>
+								<div class='list-group-item'>
+									<p>{{ substr($post->body,0,350) }} {{ strlen($post->body) > 350 ? '...' : "" }}</p>
 
-								<a href='/posts/{{ $post->id }}' title='Read More'>> Read More</a>
+									<a href='/posts/{{ $post->id }}' title='Read More'>> Read More</a>
+								</div>
 							</div>
-						</div>
-					@endforeach
+						@endforeach
+					@endif
+
 				</div><!-- panel-body end-->
 			</div><!-- panel end-->
 
