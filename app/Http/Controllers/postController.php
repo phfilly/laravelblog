@@ -47,6 +47,7 @@ class postController extends Controller
         Post::create([
             'title' => request('title'),
             'body' => request('body'),
+            'status' => request('status'),
             'user_id' => \Auth::user()->id       
         ]);
 
@@ -63,11 +64,13 @@ class postController extends Controller
 
    	public function postManager()
    	{
-   		$posts = DB::table('posts')
+   		/*$posts = DB::table('posts')
    				->where('user_id','=',\Auth::user()->id)
-   				->get();
+   				->get();*/
 
-   		return view('welcome', ['posts' => $posts]);
+      $posts = Post::where('user_id','=',\Auth::user()->id)->orderBy('created_at','desc')->paginate(5);
+
+   		return view('posts/author_posts', ['posts' => $posts]);
    	}
 
    	public function editPost($id)
@@ -75,6 +78,30 @@ class postController extends Controller
    		$post = Post::find($id);
    		return view('posts.edit',['post'=>$post]);
    	}
+
+    public function editPostAjax($id)
+    {
+      $post = Post::find($id);
+      return response()->json($post);
+    }
+
+    public function updatePostAjax($id)
+    {
+      $this->validate(request(),[
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $post = Post::find($id);
+        $post->title = request('title');
+        $post->body = request('body');
+        $post->status = request('status');
+
+        $post->save();
+
+      session()->flash('message','Post Edited');
+      return response()->json($post);
+    }
 
    	public function updatePost($id)
    	{	
@@ -86,6 +113,7 @@ class postController extends Controller
         $post = Post::find($id);
         $post->title = request('title');
         $post->body = request('body');
+        $post->status = request('status');
 
         $post->save();
 
@@ -102,4 +130,13 @@ class postController extends Controller
    		$posts = DB::table('posts')->get();
    		return view('welcome', ['posts' => $posts]);
    	}
+
+    public function deletePostAjax($id)
+    {
+      $post = Post::find($id);
+      $post->delete();
+
+      session()->flash('message','Post Deleted');
+      return response()->json($post);
+    }
 }

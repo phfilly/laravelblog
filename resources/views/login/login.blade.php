@@ -9,7 +9,7 @@
 
 			@include('structure.errors')
 
-			<form method='post' action='/home'>
+			<form method='post' action='/dashboard'>
 
 				{{ csrf_field() }}
 

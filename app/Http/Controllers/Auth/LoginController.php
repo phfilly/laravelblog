@@ -43,7 +43,7 @@ class LoginController extends Controller
         {
             session()->flash('message','Logged in');
 
-            return view('user.dashboard');
+            return redirect('home');
         }
         else
         {

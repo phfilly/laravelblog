@@ -6,6 +6,35 @@
 
 	<div class='container'>
 		<div class='col-md-10 col-md-offset-1'>
+
+			<div class='panel-body'>
+			 	<form class="form-inline" action='/search' method='post'>
+
+			 		{{ csrf_field() }}
+
+				 	<div class="form-group">
+                        <label class="filter-col" style="margin-right:0;" for="pref-search">Search:</label>
+                        <input type="text" class="form-control input-sm" id="pref-search" name='search'>
+                    </div><!-- form group [search] -->
+                    <div class="form-group">
+                        <label class="filter-col" style="margin-right:0;" for="pref-orderby">Order by:</label>
+                        <select id="pref-orderby" class="form-control">
+                            <option>Ascending</option>
+                            <option>Descendent</option>
+                        </select>                                
+                    </div> <!-- form group [order by] --> 
+                    <div class="form-group">    
+                        <button type="submit" class="btn btn-default filter-col">
+                            Filter
+                        </button>  
+                    </div>
+                </form>
+			</div>
+
+			@if (isset($details) && $query != '')
+				<p> Search results found for: <b> {{ $query }} </b>
+			@endif
+
 			<div class='panel panel-default'>
 				<div class='panel-heading'>
 					<h2>Latest Posts</h2>

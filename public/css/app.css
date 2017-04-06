@@ -21,6 +21,25 @@ body
 }
 /* POP UP END*/
 
+/* BADGES */
+
+.badge-warning {
+    background-color: #f0ad4e !important;
+}
+
+.badge-success {
+    background-color: #5cb85c !important;
+}
+
+.badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+}
+
+
+/* BADGES END */
+
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
