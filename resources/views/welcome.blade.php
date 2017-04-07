@@ -5,7 +5,7 @@
 	@section('title','Home')
 
 	<div class='container'>
-		<div class='col-md-10 col-md-offset-1'>
+		<div class='col-md-12'>
 
 			<div class='panel-body'>
 			 	<form class="form-inline" action='/search' method='post'>
@@ -48,7 +48,7 @@
 
 			<div class='panel panel-default'>
 				<div class='panel-heading'>
-					<h2>Latest Posts</h2>
+					<h2>LATEST ARTICLES</h2>
 				</div>
 				<div class='panel-body'>
 
@@ -59,18 +59,36 @@
 						@foreach($posts as $post)
 							<div class='list-group'>
 								<div class='list-group-item'>
-									<h1 class='text-uppercase'>{{ $post->title }}</h1>
-									<small>
-										{{ date('M j, Y H:ia', strtotime($post->created_at)) }} by 
-											<a href="{{ url('/user/'.$post->user_id)}}"><strong>{{ ucfirst($post->author->name) }}</strong></a>
-									</small> <!--user->name -->
+									<h1 class='text-uppercase text-center'>{{ $post->title }}</h1>
+
+									<a href="/posts/{{ $post->id }}" class="thumbnail">
+		      							@if ( $post->pic != '')
+		      								<div style=" background: url('/images/{{ $post->pic }}');" class='post_image'></div>
+		      							@else
+		      								<div style=" background: url('/images/image_not_found.png');" class='post_image'></div>
+		      							@endif
+		    						</a>
 								</div>
-								<div class='list-group-item'>
+								<div class='list-group-item text-center'>
 									<p>{{ substr($post->body,0,350) }} {{ strlen($post->body) > 350 ? '...' : "" }}</p>
 
-									<a href='/posts/{{ $post->id }}' title='Read More'>> Read More</a>
+									<br>
+											<a href='/posts/{{ $post->id }}' title='Read More' class='read_more'>Read More</a>
+									<br>
+									<br>
+								</div>
+								<div class='list-group-item text-center'>
+									<small>
+										<span class='glyphicon glyphicon-time'></span> {{ date('M j, Y H:ia', strtotime($post->created_at)) }} by 
+											<a href="{{ url('/user/'.$post->user_id)}}">
+												<strong>
+													<span class='glyphicon glyphicon-user'></span> {{ ucfirst($post->author->name) }}
+												</strong>
+											</a>
+									</small>
 								</div>
 							</div>
+							<hr>
 						@endforeach
 
 					@else

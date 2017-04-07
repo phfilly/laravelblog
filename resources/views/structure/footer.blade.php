@@ -1,7 +1,8 @@
     
     <div class='footer-bottom'>
     	<div class='container'>
-    		© {{ date('Y') }} | <span style='color:#ff3900'>Philip du Toit</span> | philipdutoit@yahoo.com
+    		<img src='/images/boat.png' class='boat'/>
+    		© {{ date('Y') }} | <span style='color:#ff3900'>Philip du Toit</span> | <a href='mailto:philipdutoit@yahoo.com'><span class='glyphicon glyphicon-envelope'></span> philipdutoit@yahoo.com</a>
     	</div>
     </div>
 

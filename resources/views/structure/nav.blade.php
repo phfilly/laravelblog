@@ -49,6 +49,16 @@
     <div class='container'>
         <ol class='breadcrumb'>
             <li><a href='/' title='Home'>Home</a></li>
+
+            @for($i = 0; $i <= count(Request::segments()); $i++)
+              <li>
+                <a href="">{{Request::segment($i)}}</a>
+                @if($i < count(Request::segments()) & $i > 0)
+                  {!!'<i class="fa fa-angle-right"></i>'!!}
+                @endif
+              </li>
+            @endfor
+
         </ol>
     </div>
   </div>

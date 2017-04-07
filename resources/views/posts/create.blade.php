@@ -8,7 +8,7 @@
         <h1>Create a Post</h1>
       @extends('structure.errors')
 
-      <form method='POST' action='/post'>
+      <form method='POST' action='/post' enctype="multipart/form-data">
 
         {{ csrf_field() }}
 
@@ -20,6 +20,11 @@
         <div class="form-group">
           <label>Body</label>
           <textarea class="form-control" id="body" rows="3" name='body'></textarea>
+        </div>
+
+         <div class="form-group">
+          <label>Article Cover Picture</label>
+          <input type='file' name='image'/>
         </div>
 
         <div class="form-group">

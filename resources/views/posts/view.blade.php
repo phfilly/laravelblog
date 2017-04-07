@@ -12,7 +12,14 @@
 
 							<div class='list-group'>
 								<div class='list-group-item'>
-									<h1 class='text-uppercase'>{{ $post->title }}</h1>
+									<h1 class='text-uppercase text-center'>{{ $post->title }}</h1>
+
+									@if ( $post->pic != '')
+	      								<div style=" background: url('/images/{{ $post->pic }}');" class='post_image'></div>
+	      							@else
+	      								<div style=" background: url('/images/image_not_found.png');" class='post_image'></div>
+	      							@endif
+
 									<small>
 										{{ date('M j, Y H:ia', strtotime($post->created_at)) }} by 
 										<a href="{{ url('/user/'.$post->user_id)}}"><strong>{{ ucfirst($post->author->name) }}</strong></a>
@@ -33,7 +40,15 @@
 						<br>
 
 						@if(Auth::user()->id == $post->user_id)
-							<a href='/posts/edit/{{ $post->id }}' class='btn btn-primary btn-block' >
+
+							<a href='/post/my-posts' class="btn btn-primary btn-detail edit-post btn-block">
+								<span class='glyphicon glyphicon-pencil'></span> Edit
+							</a>
+                			<!--<button class="btn btn-danger btn-delete delete-post btn-block" value="{{$post->id}}">
+                				<span class='glyphicon glyphicon-remove'></span> Delete
+                			</button>-->
+
+							<!--<a href='/posts/edit/{{ $post->id }}' class='btn btn-primary btn-block' >
 								<span class='glyphicon glyphicon-pencil'></span> Edit
 							</a>
 
@@ -41,22 +56,19 @@
 								{{ csrf_field() }}
 								<button class="btn btn-danger btn-block login-button" type="submit" >
 									<span class='glyphicon glyphicon-remove'></span> Delete
-								</button>  <!-- onClick='deletePost({{$post->id}})'-->
-							</form>
+								</button> 
+							</form>-->
 
 						@else
 							<p style="color:red" class='text-center'>No permission to edit or delete</p>
 						@endif
+
+						@include('structure.modal')
 
 					</div><!-- panel-body end-->
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<script>
-		var token = "{{ Session::token() }}";
-		var url = "{{ route('home') }}";
-	</script>
 	
 @extends('structure.footer')

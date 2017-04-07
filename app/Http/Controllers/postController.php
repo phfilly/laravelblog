@@ -39,17 +39,21 @@ class postController extends Controller
    		return view('welcome', ['posts' => $posts]);
    	}
 
-   	public function savePost()
+   	public function savePost(Request $request)
    	{
    		$this->validate(request(),[
             'title' => 'required',
             'body' => 'required'
         ]);
 
+      $imageName = time().'.'.$request->image->getClientOriginalExtension();
+      $request->image->move(public_path('images'), $imageName);
+
         Post::create([
             'title' => request('title'),
             'body' => request('body'),
             'status' => request('status'),
+            'pic' => $imageName,
             'user_id' => \Auth::user()->id       
         ]);
 
