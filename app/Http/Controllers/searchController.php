@@ -12,14 +12,25 @@ class searchController extends Controller
     public function search()
     {
     	$search = request('search');
+        $orderBy = request('orderBy');
 
-    	$posts = Post::where('title','LIKE','%'.$search.'%')
+        if($search == '' || $search == null)
+        {
+            $posts = Post::where('status','=','Active')
+                        ->orderBy('created_at',$orderBy)
+                        ->paginate(5);
+        }
+        else
+        {
+	        $posts = Post::where('title','LIKE','%'.$search.'%')
+                        ->where('status','=','Active')
     					->orWhere('body','LIKE','%'.$search.'%')
-    					->orderBy('created_at','desc')
+    					->orderBy('created_at',$orderBy)
     					->paginate(5);
+        }
 
     	if(count($posts) > 0)
-    		return view('welcome',['posts' => $posts])->withDetails($posts)->withQuery($search);
+    		return view('welcome',['posts' => $posts,'orderBy' => $orderBy])->withDetails($posts)->withQuery($search);
     	else
     		return view('welcome')->withMessage("No results found. Please try again");
 

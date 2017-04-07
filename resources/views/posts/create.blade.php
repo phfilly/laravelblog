@@ -5,7 +5,7 @@
 
   <div class='container'>
     <div class='row'>
-
+        <h1>Create a Post</h1>
       @extends('structure.errors')
 
       <form method='POST' action='/post'>
@@ -25,14 +25,14 @@
         <div class="form-group">
           <label>Article Status</label>
           <br>
-          <div class="btn-group" data-toggle="buttons">
+
             <label class="btn btn-success">
                 <input type="radio" name="status"  autocomplete="off" value='Active' checked> Active
             </label>
             <label class="btn btn-danger">
               <input type="radio" name="status" autocomplete="off" value='Disable'> Disable
             </label>
-          </div>
+        
         </div>
        
         <button type="submit" class="btn btn-primary">Submit</button>

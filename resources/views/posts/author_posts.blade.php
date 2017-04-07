@@ -49,8 +49,12 @@
 										<small id='updated_{{ $post->id }}'>{{ date('M j, Y H:i a', strtotime($post->updated_at)) }} </small>
 									</td>
 									<td>
-										<button class="btn btn-primary btn-detail edit-post" value="{{$post->id}}">Edit</button>
-                            			<button class="btn btn-danger btn-delete delete-post" value="{{$post->id}}">Delete</button>
+										<button class="btn btn-primary btn-detail edit-post" value="{{$post->id}}">
+											<span class='glyphicon glyphicon-pencil'></span> Edit
+										</button>
+                            			<button class="btn btn-danger btn-delete delete-post" value="{{$post->id}}">
+                            				<span class='glyphicon glyphicon-remove'></span> Delete
+                            			</button>
 									</td>
 								</tr>
 							@endforeach

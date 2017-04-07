@@ -14,7 +14,8 @@
 								<div class='list-group-item'>
 									<h1 class='text-uppercase'>{{ $post->title }}</h1>
 									<small>
-										{{ date('M j, Y H:ia', strtotime($post->created_at)) }} by {{ $post->user_id }}
+										{{ date('M j, Y H:ia', strtotime($post->created_at)) }} by 
+										<a href="{{ url('/user/'.$post->user_id)}}"><strong>{{ ucfirst($post->author->name) }}</strong></a>
 									</small>
 								</div>
 								<div class='list-group-item'>
@@ -32,11 +33,15 @@
 						<br>
 
 						@if(Auth::user()->id == $post->user_id)
-							<a href='/posts/edit/{{ $post->id }}' class='btn btn-primary btn-block' >Edit</a>
+							<a href='/posts/edit/{{ $post->id }}' class='btn btn-primary btn-block' >
+								<span class='glyphicon glyphicon-pencil'></span> Edit
+							</a>
 
 							<form  method='POST' action='/posts/{{ $post->id }}' class='delete'>
 								{{ csrf_field() }}
-								<button class="btn btn-danger btn-block login-button" type="submit" >Delete</button>  <!-- onClick='deletePost({{$post->id}})'-->
+								<button class="btn btn-danger btn-block login-button" type="submit" >
+									<span class='glyphicon glyphicon-remove'></span> Delete
+								</button>  <!-- onClick='deletePost({{$post->id}})'-->
 							</form>
 
 						@else

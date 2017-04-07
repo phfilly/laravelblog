@@ -32,7 +32,9 @@ class postController extends Controller
    					->join('users','users.id','=','posts.user_id')
    					->get();*/
 
-   	  $posts = Post::orderBy('created_at','desc')->paginate(5);
+   	  $posts = Post::orderBy('created_at','desc')
+                      ->where("status","=","Active")
+                      ->paginate(5);
 
    		return view('welcome', ['posts' => $posts]);
    	}

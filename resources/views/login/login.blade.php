@@ -3,7 +3,7 @@
 @section('title','Login')
 
 <div class="container login-form">
-	<h2 class="login-title">- Login -</h2>
+	<h2 class="login-title">Login</h2>
 	<div class="panel panel-default">
 		<div class="panel-body">
 

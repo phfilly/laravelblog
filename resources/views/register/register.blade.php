@@ -3,7 +3,7 @@
 @section('title','Register')
 
 <div class="container login-form">
-    <h2 class="login-title">- Register -</h2>
+    <h2 class="login-title">Register</h2>
     <div class="panel panel-default">
         <div class="panel-body">
 
@@ -33,7 +33,9 @@
                     <input  id="txtPassword" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required> 
                 </div>
 
-                <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i> Register</button>    
+                <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i> Register</button>  
+                <br>
+                <p class="text-center">Already a member? Login <a href="/login">here</a>   
             </form>         
         </div>
     </div>

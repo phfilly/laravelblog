@@ -14,6 +14,7 @@ Route::get('/register','Auth\RegisterController@register');
 Route::post('/register','Auth\RegisterController@save');
 
 Route::get('/user','userController@init');	
+Route::get('/user/{user}','userController@userProfile');	
 	
 Route::get('/post','postController@viewAllPosts');	
 Route::get('/post/create','postController@createPost');	

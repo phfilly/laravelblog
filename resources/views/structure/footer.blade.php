@@ -1,3 +1,10 @@
+    
+    <div class='footer-bottom'>
+    	<div class='container'>
+    		© {{ date('Y') }} | <span style='color:#ff3900'>Philip du Toit</span> | philipdutoit@yahoo.com
+    	</div>
+    </div>
+
     </body>
 
        	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
