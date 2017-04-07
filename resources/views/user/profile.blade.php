@@ -8,10 +8,13 @@
 		<div class='row'>
 			<div class='col-md-3'>
 				<div class='panel panel-default'>
-					<div class='panel-body'>
+					<div class='panel-body text-center'>
 
-					PIC
-							
+						<img src='/images/profile_pic.png' class='profile_pic'/>
+
+						<h3 class='text-uppercase'>{{ $user->name }}</h3>
+
+						<a href='mailto:{{ $user->email }}' title='Come in contact!'>{{ $user->email }}</a>
 					</div><!-- panel-body end-->
 				</div><!-- panel end-->
 			</div>
@@ -19,14 +22,9 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 
-						<h1 class='text-uppercase'>{{ $user_posts->author->name }}</h1>
-						<a href='mailto:{{ $user->email }}' title='Come in contact!'>{{ $user_posts->author->email }}</a>
 
+						<h1>Activty Log</h1>
 						<hr>
-
-						<h3>Activity Feed</h3>
-
-
 
 					</div><!-- panel-body end-->
 				</div>

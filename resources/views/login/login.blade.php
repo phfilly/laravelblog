@@ -3,9 +3,11 @@
 @section('title','Login')
 
 <div class="container login-form">
-	<h2 class="login-title">Login</h2>
+
 	<div class="panel panel-default">
 		<div class="panel-body">
+
+			<h2 class="login-title grey-title"><img src='images/logo.png' class='logo'/> LOGIN</h2>
 
 			@include('structure.errors')
 
@@ -23,7 +25,7 @@
 					<input  id="txtPassword" type="password" class="form-control" name="password" placeholder="Password" required> 
 				</div>
 
-				<button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i> Login</button>
+				<button class="btn btn-primary btn-block login-button orange-bg" type="submit"><span class="glyphicon glyphicon-log-in"></span> Login</button>
 				<br>
 				<p class="text-center">Not a member? <a href="/register">Sign up now</a> 
 

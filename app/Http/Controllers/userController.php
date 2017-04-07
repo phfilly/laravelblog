@@ -24,7 +24,7 @@ class userController extends Controller
     public function logout()
     {
     	auth()->logout();
-    	return redirect()->route('login.login');
+    	return redirect()->route('login');
     }
 
     public function updateProfile()
@@ -44,10 +44,8 @@ class userController extends Controller
 
     public function userProfile($id)
     {
-        //$user = User::find($id);       
-        $user_posts = Post::where('user_id','=',$id)->orderBy('created_at','desc');
-
-        return view('user.profile',['user_posts'=>$user_posts]);
+        $user = User::find($id);       
+        return view('user.profile',['user'=>$user]);
     }
 
 }

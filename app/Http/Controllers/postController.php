@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -22,7 +23,8 @@ class postController extends Controller
 
    	public function createPost()
    	{
-   		return view('posts.create');
+       $category = Category::orderBy('created_at','desc')->get();
+   		 return view('posts.create', ['category' => $category]);
    	}
 
    	public function viewAllPosts()
@@ -36,14 +38,17 @@ class postController extends Controller
                       ->where("status","=","Active")
                       ->paginate(5);
 
-   		return view('welcome', ['posts' => $posts]);
+      $category = Category::orderBy('created_at','desc')->get();
+
+   		return view('welcome', ['posts' => $posts,'categories' => $category]);
    	}
 
-   	public function savePost(Request $request)
+   	public function store(Request $request)
    	{
    		$this->validate(request(),[
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'category' => 'required'
         ]);
 
       $imageName = time().'.'.$request->image->getClientOriginalExtension();
@@ -53,6 +58,7 @@ class postController extends Controller
             'title' => request('title'),
             'body' => request('body'),
             'status' => request('status'),
+            'categories_id' => request('category'),
             'pic' => $imageName,
             'user_id' => \Auth::user()->id       
         ]);
@@ -145,4 +151,5 @@ class postController extends Controller
       session()->flash('message','Post Deleted');
       return response()->json($post);
     }
+
 }

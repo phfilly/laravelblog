@@ -5,50 +5,19 @@
 	@section('title','Home')
 
 	<div class='container'>
-		<div class='col-md-12'>
-
-			<div class='panel-body'>
-			 	<form class="form-inline" action='/search' method='post'>
-
-			 		{{ csrf_field() }}
-
-				 	<div class="form-group">
-                        <label style="margin-right:0;" >Search:</label>
-                        <input type="text" class="form-control input-sm" id="search" name='search'>
-                    </div>
-
-                    <div class="form-group">
-                        <label style="margin-right:0;" >Order by:</label>
-                        <select class="form-control" name='orderBy'>
-                        	@if ( isset($orderBy) && $orderBy == 'ASC')
-                            	<option value='ASC' selected>Newest</option>
-                            	<option value='DESC'>Oldest</option>
-                           	@elseif ( isset($orderBy) && orderBy == 'DESC')
-                           		<option value='DESC' selected>Oldest</option>
-                           		<option value='ASC'>Newest</option>
-                           	@else
-                           		<option value='ASC'>Newest</option>
-                            	<option value='DESC'>Oldest</option>
-                            @endif
-                        </select>                                
-                    </div>
-
-                    <div class="form-group">    
-                        <button type="submit" class="btn btn-primary">
-                           <span class='glyphicon glyphicon-filter'></span> Filter
-                        </button>  
-                    </div>
-
-                </form>
-			</div>
-
-			@if (isset($details) && $query != '')
-				<p> Search results found for: <b> {{ $query }} </b>
-			@endif
+		<div class='col-md-9'>
 
 			<div class='panel panel-default'>
 				<div class='panel-heading'>
-					<h2>LATEST ARTICLES</h2>
+					<h2>
+						<span class='glyphicon glyphicon-bullhorn'></span>
+						LATEST ARTICLES
+					</h2>
+
+					@if (isset($details) && $query != '')
+						<p> Search results found for: <b class='orange-text'> {{ $query }} </b>
+					@endif
+
 				</div>
 				<div class='panel-body'>
 
@@ -60,6 +29,12 @@
 							<div class='list-group'>
 								<div class='list-group-item'>
 									<h1 class='text-uppercase text-center'>{{ $post->title }}</h1>
+
+									<div class='text-center' style='width:100%;'>
+										<span class="label label-info">Category</span>
+									</div>
+
+									<br>
 
 									<a href="/posts/{{ $post->id }}" class="thumbnail">
 		      							@if ( $post->pic != '')
@@ -104,6 +79,69 @@
 				@endif
 			</div>
 
+		</div><!-- md-12 end-->
+		<div class='col-md-3'>
+			<div class='panel panel-default'>
+				<div class='panel-body'>
+
+				 	<form class="form-inline" action='/search' method='post'>
+
+				 		{{ csrf_field() }}
+
+					 	<div class="form-group">
+	                        <label style="margin-right:0;" >Search:</label>
+	                        <input type="text" class="form-control input-sm" id="search" name='search'>
+	                    </div>
+
+	                    <br>
+
+	                    <div class="form-group">
+	                        <label style="margin-right:0;" >Order by:</label>
+	                        <select class="form-control" name='orderBy' style='width:100%;'>
+	                        	@if ( isset($orderBy) && $orderBy == 'ASC')
+	                            	<option value='ASC' selected>Newest</option>
+	                            	<option value='DESC'>Oldest</option>
+	                           	@elseif ( isset($orderBy) && orderBy == 'DESC')
+	                           		<option value='DESC' selected>Oldest</option>
+	                           		<option value='ASC'>Newest</option>
+	                           	@else
+	                           		<option value='ASC'>Newest</option>
+	                            	<option value='DESC'>Oldest</option>
+	                            @endif
+	                        </select>                                
+	                    </div>
+
+	                    <br><br>
+
+	                    <div class="form-group">    
+	                        <button type="submit" class="btn btn-block btn-primary">
+	                           <span class='glyphicon glyphicon-filter'></span> Filter
+	                        </button>  
+	                    </div>
+
+	                </form>
+
+	            </div>
+            </div>
+		</div><!-- md-3 end-->
+
+		<div class='col-md-3'>
+			<div class='panel panel-default'>
+				<div class='panel-body'>
+					<h5>CATEGORIES</h5>	
+						<ul class="nav nav-pills">
+							@if ( isset($categories) && !$categories->count())
+								There is no categories loaded
+							@elseif (isset($categories))
+								@foreach($categories as $category)
+									<li role="presentation">
+									  	<a href=''>{{ $category->name }}</a>
+									</li>
+								@endforeach
+							@endif
+						</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 

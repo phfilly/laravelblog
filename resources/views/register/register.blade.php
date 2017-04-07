@@ -3,9 +3,11 @@
 @section('title','Register')
 
 <div class="container login-form">
-    <h2 class="login-title">Register</h2>
+
     <div class="panel panel-default">
         <div class="panel-body">
+
+            <h2 class="login-title grey-title"><img src='images/logo.png' class='logo'/> REGISTER</h2>
 
             @include('structure.errors')
 
@@ -33,7 +35,7 @@
                     <input  id="txtPassword" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required> 
                 </div>
 
-                <button class="btn btn-primary btn-block login-button" type="submit"><i class="fa fa-sign-in"></i> Register</button>  
+                <button class="btn btn-primary btn-block login-button orange-bg" type="submit"><span class="glyphicon glyphicon-log-in"></span> Register</button>  
                 <br>
                 <p class="text-center">Already a member? Login <a href="/login">here</a>   
             </form>         

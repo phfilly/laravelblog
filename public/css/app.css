@@ -2,13 +2,60 @@ body {
   background-color: #2C3338 !important;
 }
 
+.orange-bg{
+	background-color: #F04E23 !important;
+	border-color: #B32E0D !important;
+}
+
+.orange-text{
+	color: #F04E23 !important;
+}
+
+.grey-title{
+	color:#636b6f !important;
+}
+
+.profile_pic{
+	max-width:75px;
+	display:block;
+	margin:auto;
+}
+
 /* LOGIN FORM */
-.login-form{width:390px !important;}
-.login-title{font-family: 'Exo', sans-serif;text-align:center;color: white;}
-.login-userinput{margin-bottom: 10px;}
-.login-button{margin-top:10px;}
-.login-options{margin-bottom:0px;}
-.login-forgot{float: right;}
+
+.login-form{
+	position: absolute;
+  	margin: auto;
+  	top: 0;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	width:390px !important;
+  	max-height: 540px;
+}
+
+.login-title{
+	font-family: 'Exo', sans-serif;
+	text-align:center;
+	color: white;
+}
+
+.login-userinput{
+	margin-bottom: 10px;
+}
+
+.login-button{
+	margin-top:10px;
+}
+
+.login-options{
+	margin-bottom:0px;
+}
+
+.login-forgot{
+	float: right;
+}
+
 /* LOGIN FORM END*/
 
 /* POPUP */
@@ -39,13 +86,25 @@ body {
 
 
 /* FOOTER */
-
 .footer-bottom{
 	margin-top:40px;
 	background-color: #212629;
-	padding:40px 10px 40px 10px;
+	padding:10px 10px 0px 10px;
 	width:100%;
 	text-align: center;
+	bottom:0px;
+	position:fixed;
+	z-index: 9999;
+}
+
+.footer-waves{
+	height:55px;
+	background-image: url('../images/footer_waves_2.png');
+	background-repeat: repeat-x;
+	position:fixed;
+	z-index: 9999;
+	bottom:18px;
+	width:100%;
 }
 
 .post_image{
@@ -69,11 +128,45 @@ body {
 	padding:10px 15px 10px 15px;
 }
 
+.form-group{
+	margin-top:10px;
+}
+
+/* ANIMATIONS */
+
 .boat{
 	position:relative;
-	top:-92px;
+	top:-64px;
 	float:right;
+  	animation:rock-boat 3s ease-in-out infinite;
 }
+
+
+@keyframes rock-boat {
+	50%  { -webkit-transform: rotate(-8deg) translateX(-5px); }
+}
+
+.logo{
+	max-width:26px;
+	position: relative;
+	top: -3px;
+	animation:logo-turn 5s ease-in-out infinite;
+}
+
+@keyframes logo-turn {
+	from { 
+        -webkit-transform: rotate(0deg); 
+    } to { 
+        -webkit-transform: rotate(360deg); 
+    }
+}
+
+/* ANIMATION END */
+
+/*@keyframes rock-boat {
+	50%  { -webkit-transform: rotate(-8deg) translateX(5px); }
+	100%  { -webkit-transform: rotate(8deg) translateX(-5px); }
+}*/
 
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!

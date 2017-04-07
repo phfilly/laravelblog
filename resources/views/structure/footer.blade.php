@@ -1,4 +1,7 @@
-    
+    <br><br>
+    <div class='footer-waves'></div>
+    <br>
+    <br>
     <div class='footer-bottom'>
     	<div class='container'>
     		<img src='/images/boat.png' class='boat'/>
