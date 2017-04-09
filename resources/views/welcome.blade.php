@@ -14,6 +14,10 @@
 						LATEST ARTICLES
 					</h2>
 
+					<small>
+						<i style='color:#ddd;'>ONLY SHOWING ACTIVE POSTS</i>
+					</small>
+
 					@if (isset($details))
 						<p> Search results found for: <b class='orange-text'> "{{ $query }}" </b> Ordered by <b class='orange-text'>{{ $orderBy }}</b>
 					@endif
@@ -22,7 +26,12 @@
 				<div class='panel-body'>
 
 					@if ( isset($posts) && !$posts->count())
-						There is no posts to show. Login and write a new post
+						There is no posts to show. 
+						@if( $category_name == null)
+							No posts found in this category
+						@else
+							Category:<b>{{ $category_name[0]['name'] }}</b> selected.
+						@endif
 					@elseif (isset($posts))
 
 						@foreach($posts as $post)
@@ -101,7 +110,7 @@
 	                        	@if ( isset($orderBy) && $orderBy == 'ASC')
 	                            	<option value='ASC' selected>Newest</option>
 	                            	<option value='DESC'>Oldest</option>
-	                           	@elseif ( isset($orderBy) && orderBy == 'DESC')
+	                           	@elseif ( isset($orderBy) && $orderBy == 'DESC')
 	                           		<option value='DESC' selected>Oldest</option>
 	                           		<option value='ASC'>Newest</option>
 	                           	@else

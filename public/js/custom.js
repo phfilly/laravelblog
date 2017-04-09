@@ -5,12 +5,17 @@ $(document).ready(function(){
 	popup();
 
     $('.edit-post').click(function(){
+
+        tinymce.remove(); 
+
         var post_id = $(this).val();
         $.get(url + '/edit/' + post_id, function (data){
-            console.log(data);
+            console.log("here" + data.body);
             $('#post_id').val(data.id);
             $('#title').val(data.title);
-            $('#body').val(data.body);
+
+            var text = data.body.replace(/(<([^>]+)>)/ig,"");
+            $('#body').val(text);
 
             if(data.status == 'Active')
                 $('#status_active').attr('checked',true);
@@ -25,25 +30,30 @@ $(document).ready(function(){
 
     $('.delete-post').click(function()
     {
-        $.ajaxSetup({
-            headers: 
-            {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
+        var flag = confirm("Do you want to delete this item?");
 
-        var post_id = $(this).val();
-        $.ajax({
-            type: "DELETE",
-            url: url + '/' + post_id,
-            success: function (data) {
-                popup();
-                $("#post_" + post_id).remove();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
+        if(flag)
+        {
+            $.ajaxSetup({
+                headers: 
+                {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            var post_id = $(this).val();
+            $.ajax({
+                type: "DELETE",
+                url: url + '/' + post_id,
+                success: function (data) {
+                    popup();
+                    $("#post_" + post_id).remove();
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        }
     });
 
 
@@ -89,7 +99,7 @@ $(document).ready(function(){
                 dataType: 'json',
                 success: function (data) {
 
-                    $('#title_' + post_id).hide().html(data.title).fadeIn();
+                    $('#title_' + post_id).hide().html("<a href='/posts/" + post_id + "' title='View Post'><span class='glyphicon glyphicon-eye-open'></span></a> " + data.title).fadeIn();
                     $('#body_' + post_id).hide().html(data.body).fadeIn();
                     $('#updated_' + post_id).hide().html(data.updated_at).fadeIn();
 

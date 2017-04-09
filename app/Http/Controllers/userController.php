@@ -38,8 +38,7 @@ class userController extends Controller
 
         session()->flash('message','Profile Updated');
 
-        $posts = DB::table('posts')->get();
-        return view('welcome', ['posts' => $posts]);
+         return redirect()->route('home');
     }
 
     public function userProfile($id)

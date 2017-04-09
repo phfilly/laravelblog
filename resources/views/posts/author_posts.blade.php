@@ -1,4 +1,4 @@
-@extends('structure.top')       
+@include('structure.top')       
 	@include('structure.nav') 
 	@include('structure.messages')
 
@@ -24,7 +24,7 @@
 						@if ( !$posts->count() )
 							<tr>
 								<td colspan='5'>
-									There is no posts to show. Login and write a new post
+									There is no posts to show.
 								</td>
 							</tr>
 						@else

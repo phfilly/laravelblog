@@ -27,7 +27,7 @@ Route::get('/post/create','postController@createPost');
 
 Route::get('/posts/{posts}','postController@viewPost');							//view single post
 Route::post('/posts/{posts}','postController@updatePost');						//update post
-Route::post('/posts/{posts}','postController@deletePost');						//delete post
+//Route::post('/posts/{posts}','postController@deletePost');					//delete post
 
 Route::post('/post','postController@store');	
 Route::get('/post/my-posts','postController@postManager');	

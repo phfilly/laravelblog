@@ -16,12 +16,11 @@
 								<th>#</th>
 								<th>Category</th>
 								<th>Last Update</th>
-								<th>Action</th>
 							</tr>
 						@if ( !$categories->count() )
 							<tr>
 								<td colspan='5'>
-									There are no categories to show. Login and add a category
+									There are no categories to show.
 								</td>
 							</tr>
 						@else
@@ -38,14 +37,14 @@
 									<td style='vertical-align: middle'>
 										<small id='updated_{{ $category->id }}'>{{ date('M j, Y H:i a', strtotime($category->updated_at)) }} </small>
 									</td>
-									<td>
+									<!--<td>
 										<button class="btn btn-primary btn-detail edit-category" value="{{$category->id}}">
 											<span class='glyphicon glyphicon-pencil'></span> Edit
 										</button>
                             			<button class="btn btn-danger btn-delete delete-category" value="{{$category->id}}">
                             				<span class='glyphicon glyphicon-remove'></span> Delete
                             			</button>
-									</td>
+									</td>-->
 								</tr>
 							@endforeach
 						@endif

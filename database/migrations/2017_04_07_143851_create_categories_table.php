@@ -14,25 +14,16 @@ class CreateCategoriesTable extends Migration
      public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id')->primary()->unique();
+            $table->increments('id')->unique();
             $table->text('name');
             $table->timestamps();
         });
 
-        DB::table('categories')->insert(
-            array(
-                'name' => 'Sport'
-            ),
-            array(
-                'name' => 'Travel'
-            ),
-            array(
-                'name' => 'Food'
-            ),
-            array(
-                'name' => 'Health'
-            )
-        );
+        DB::table('categories')->insert(array('name' => 'Sport'));
+        DB::table('categories')->insert(array('name' => 'Travel'));
+        DB::table('categories')->insert(array('name' => 'Food'));
+        DB::table('categories')->insert(array('name' => 'Health'));
+
     }
 
     /**

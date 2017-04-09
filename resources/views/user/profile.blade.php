@@ -22,9 +22,8 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 
-
 						<h1>Activty Log</h1>
-						<hr>
+						<i>Coming Soon...</i>
 
 					</div><!-- panel-body end-->
 				</div>

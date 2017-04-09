@@ -71,7 +71,7 @@ body {
 	position:absolute;
 	bottom:30px;
 	right:30px;
-	z-index: 9999;
+	z-index: 10000;
 }
 /* POP UP END*/
 
@@ -177,10 +177,6 @@ body {
 
 /* ANIMATION END */
 
-/*@keyframes rock-boat {
-	50%  { -webkit-transform: rotate(-8deg) translateX(5px); }
-	100%  { -webkit-transform: rotate(8deg) translateX(-5px); }
-}*/
 
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!

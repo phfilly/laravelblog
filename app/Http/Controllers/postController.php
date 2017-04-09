@@ -51,21 +51,25 @@ class postController extends Controller
             'category' => 'required'
         ]);
 
-      $imageName = time().'.'.$request->image->getClientOriginalExtension();
-      $request->image->move(public_path('images'), $imageName);
+      $imageName = "";
+      if($request->image != null)
+      {
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('images'), $imageName);
+      }
 
-        Post::create([
-            'title' => request('title'),
-            'body' => request('body'),
-            'status' => request('status'),
-            'categories_id' => request('category'),
-            'pic' => $imageName,
-            'user_id' => \Auth::user()->id       
-        ]);
+      Post::create([
+          'title' => request('title'),
+          'body' => request('body'),
+          'status' => request('status'),
+          'categories_id' => request('category'),
+          'pic' => $imageName,
+          'user_id' => \Auth::user()->id       
+      ]);
 
-        session()->flash('message','Post Saved!');
+      session()->flash('message','Post Saved!');
 
-        return redirect()->route('home');
+      return redirect()->route('home');
    	}
 
     public function showCategoryPosts($id)
@@ -76,8 +80,9 @@ class postController extends Controller
                       ->paginate(5);
 
       $category = Category::orderBy('created_at','desc')->get();
+      $category_name = Category::where('id','=',$id)->get();
 
-      return view('welcome', ['posts' => $posts,'categories' => $category]);
+      return view('welcome', ['posts' => $posts,'categories' => $category,'category_name'=>$category_name]);
     }
 
    	public function viewPost($id)		//view single post

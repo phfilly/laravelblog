@@ -23,11 +23,21 @@
               <span class='glyphicon glyphicon-plus-sign'> </span>  Add Post
             </a>
         </li>
-        <li>
-            <a href="/category/create">
-              <span class='glyphicon glyphicon-plus-sign'> </span>  Add Category
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class='glyphicon glyphicon-th-large'></span> Category <span class="caret"></span>
             </a>
-        </li>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/category/create">
+                  <span class='glyphicon glyphicon-plus-sign'> </span> Add Category
+                </a>
+              </li>
+              <li>
+                <a href="/categories">View Categories</a>
+              </li>
+            </ul>
+          </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

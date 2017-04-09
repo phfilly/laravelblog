@@ -19,40 +19,31 @@
 										<label>Title</label>
 										<input type='text' name='title' value='{{ $post->title }}' class="form-control" required/>
 
+										<br>
+
 										<small>
-											{{ date('M j, Y H:ia', strtotime($post->created_at)) }} by {{ $post->user_id }}
+											<span class='glyphicon glyphicon-time'></span> {{ date('M j, Y H:ia', strtotime($post->created_at)) }} by 
+											<a href="{{ url('/user/'.$post->user_id)}}">
+												<strong>
+													<span class='glyphicon glyphicon-user'></span> {{ ucfirst($post->author->name) }}
+												</strong>
+											</a>
 										</small>
 									</div>
 									<div class='list-group-item'>
 										<label>Body</label>
-										<textarea class="form-control" id="exampleTextarea" rows="3" name='body'>{{ $post->body }}</textarea>
+										<textarea class="form-control" id="textarea" rows="3" name='body'>{{ $post->body }}</textarea>
 									</div>
 								</div>
-
-								<div class="form-group">
-				                    <label>Category</label>
-
-				                    <select class="form-control" name="category">
-				                        <option>Choose a category for you post</option>
-				                      @foreach($category as $c)
-				                        <option value="{{ $c->id }}">{{ $c->name }}</option> 
-				                      @endforeach   
-				                    </select>
-				                </div>
-
-				                <div class="form-group">
-				                    <label>Article Cover Picture</label>
-				                    <input type='file' name='image'/>
-				                </div>
 
 				                <div class="form-group">
 				                    <label>Article Status</label>
 				                    <br>
 				                      <label class="btn btn-success">
-				                          <input type="radio" name="status"  autocomplete="off" value='Active' checked> Active
+				                           <input type="radio" name="status"  autocomplete="off" value='Active' checked> Active
 				                      </label>
 				                      <label class="btn btn-danger">
-				                        <input type="radio" name="status" autocomplete="off" value='Disable'> Disable
+				                        	<input type="radio" name="status" autocomplete="off" value='Disable'> Disable
 				                      </label>
 				                </div>
 
@@ -74,5 +65,6 @@
 			</div>
 		</div>
 	</div>
+
 
 @extends('structure.footer')
