@@ -23,6 +23,11 @@
 								<textarea class="form-control" id="body" rows="3" name='body'></textarea>
                         </div>
 
+                        <!--<div class="form-group">
+                            <label>Category</label>
+                                <div id='category'></div>
+                        </div>-->
+
                         <div class="form-group">
 				          <label>Article Status</label>
 				          <br>

@@ -14,8 +14,8 @@
 						LATEST ARTICLES
 					</h2>
 
-					@if (isset($details) && $query != '')
-						<p> Search results found for: <b class='orange-text'> {{ $query }} </b>
+					@if (isset($details))
+						<p> Search results found for: <b class='orange-text'> "{{ $query }}" </b> Ordered by <b class='orange-text'>{{ $orderBy }}</b>
 					@endif
 
 				</div>
@@ -31,7 +31,7 @@
 									<h1 class='text-uppercase text-center'>{{ $post->title }}</h1>
 
 									<div class='text-center' style='width:100%;'>
-										<span class="label label-info">Category</span>
+										<span class="label label-info">{{ $post->category['name'] }}</span>
 									</div>
 
 									<br>
@@ -45,7 +45,7 @@
 		    						</a>
 								</div>
 								<div class='list-group-item text-center'>
-									<p>{{ substr($post->body,0,350) }} {{ strlen($post->body) > 350 ? '...' : "" }}</p>
+									<p>{!! substr($post->body,0,350) !!} {!! strlen($post->body) > 350 ? '...' : "" !!}</p>
 
 									<br>
 											<a href='/posts/{{ $post->id }}' title='Read More' class='read_more'>Read More</a>
@@ -89,14 +89,14 @@
 				 		{{ csrf_field() }}
 
 					 	<div class="form-group">
-	                        <label style="margin-right:0;" >Search:</label>
+	                        <label style="margin-right:0;" >SEARCH</label>
 	                        <input type="text" class="form-control input-sm" id="search" name='search'>
 	                    </div>
 
 	                    <br>
 
 	                    <div class="form-group">
-	                        <label style="margin-right:0;" >Order by:</label>
+	                        <label style="margin-right:0;" >ORDER BY</label>
 	                        <select class="form-control" name='orderBy' style='width:100%;'>
 	                        	@if ( isset($orderBy) && $orderBy == 'ASC')
 	                            	<option value='ASC' selected>Newest</option>
@@ -128,14 +128,14 @@
 		<div class='col-md-3'>
 			<div class='panel panel-default'>
 				<div class='panel-body'>
-					<h5>CATEGORIES</h5>	
+					<h5><b>CATEGORIES</b></h5>	
 						<ul class="nav nav-pills">
 							@if ( isset($categories) && !$categories->count())
 								There is no categories loaded
 							@elseif (isset($categories))
 								@foreach($categories as $category)
 									<li role="presentation">
-									  	<a href=''>{{ $category->name }}</a>
+									  	<a href='/categories/{{ $category->id }}'>{{ $category->name }}</a>
 									</li>
 								@endforeach
 							@endif

@@ -17,6 +17,7 @@
 								<th>Title</th>
 								<th>Body</th>
 								<th>Status</th>
+								<th>Category</th>
 								<th>Last Update</th>
 								<th>Action</th>
 							</tr>
@@ -41,7 +42,7 @@
 										</b>
 									</td>
 									<td style='max-width:400px'>
-										<i id='body_{{ $post->id }}'>{{ substr($post->body,0,100) }} {{ strlen($post->body) > 100 ? '...' : "" }}</i>
+										<i id='body_{{ $post->id }}'>{!! substr($post->body,0,100) !!} {!! strlen($post->body) > 100 ? '...' : "" !!}</i>
 									</td>
 									<td id='post_status_{{ $post->id }}'>
 										@if ( $post->status == 'Active')
@@ -49,6 +50,9 @@
 										@else
 											<span class="badge badge-pill badge-warning" id='status_disabled_{{ $post->id }}'>Disabled</span>
 										@endif
+									</td>
+									<td id='post_category_{{ $post->id }}'>
+										<span class="badge badge-pill badge-info" id='status_active_{{ $post->id }}'>{{ $post->category['name'] == '' ? '-' : $post->category['name']  }}</span>
 									</td>
 									<td style='vertical-align: middle'>
 										<small id='updated_{{ $post->id }}'>{{ date('M j, Y H:i a', strtotime($post->updated_at)) }} </small>

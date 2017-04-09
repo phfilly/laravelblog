@@ -14,9 +14,9 @@ class CreatePostTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('categories_id');
+            $table->increments('id')->primary()->unique();
+            $table->integer('user_id')->references('id')->on('users');
+            $table->integer('categories_id')->references('id')->on('categories');
             $table->string('status','15')->default('Active');
             $table->text('title');
             $table->text('pic');

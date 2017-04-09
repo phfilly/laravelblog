@@ -68,9 +68,21 @@ class postController extends Controller
         return redirect()->route('home');
    	}
 
+    public function showCategoryPosts($id)
+    {
+      $posts = Post::orderBy('created_at','desc')
+                      ->where("status","=","Active")
+                      ->where("categories_id","=",$id)
+                      ->paginate(5);
+
+      $category = Category::orderBy('created_at','desc')->get();
+
+      return view('welcome', ['posts' => $posts,'categories' => $category]);
+    }
+
    	public function viewPost($id)		//view single post
    	{	
-   		$post = Post::find($id);		//Post == model
+   		$post = Post::find($id);		
    		return view('posts.view',['post'=>$post]);
    	}
 
@@ -81,14 +93,15 @@ class postController extends Controller
    				->get();*/
 
       $posts = Post::where('user_id','=',\Auth::user()->id)->orderBy('created_at','desc')->paginate(5);
-
    		return view('posts/author_posts', ['posts' => $posts]);
    	}
 
    	public function editPost($id)
    	{	
    		$post = Post::find($id);
-   		return view('posts.edit',['post'=>$post]);
+      $category = Category::orderBy('created_at','desc')->get();
+
+   		return view('posts.edit',['post'=>$post,'category' => $category]);
    	}
 
     public function editPostAjax($id)

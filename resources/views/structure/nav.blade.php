@@ -28,11 +28,6 @@
               <span class='glyphicon glyphicon-plus-sign'> </span>  Add Category
             </a>
         </li>
-        <li>
-            <a href="/post">
-              <span class='glyphicon glyphicon-folder-open'></span>&nbsp;  Posts
-            </a>
-        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
