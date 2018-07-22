@@ -1,4 +1,4 @@
-@extends('structure.top')
+@include('structure.top')
   @include('structure.nav') 
 
   @section('title','Create Post')

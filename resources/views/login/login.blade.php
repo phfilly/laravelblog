@@ -1,4 +1,4 @@
-@extends('structure.top')
+@include('structure.top')
 
 @section('title','Login')
 

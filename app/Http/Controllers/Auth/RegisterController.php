@@ -52,7 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:3|confirmed',
         ]);
     }
 
@@ -95,7 +95,7 @@ class RegisterController extends Controller
         
         auth()->login($user);
 
-        \Mail::to($user)->send(new Welcome);
+        // \Mail::to($user)->send(new Welcome);
 
         session()->flash('message','Welcome!');
         

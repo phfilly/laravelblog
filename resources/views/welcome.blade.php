@@ -1,4 +1,4 @@
-@extends('structure.top')       
+@include('structure.top')       
 	@include('structure.nav') 
 	@include('structure.messages')
 
@@ -27,7 +27,7 @@
 
 					@if ( isset($posts) && !$posts->count())
 						There is no posts to show. 
-						@if( $category_name == null)
+						@if( $category_name == null || isset($category_name))
 							No posts found in this category
 						@else
 							Category:<b>{{ $category_name[0]['name'] }}</b> selected.

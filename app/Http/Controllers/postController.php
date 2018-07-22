@@ -23,24 +23,21 @@ class postController extends Controller
 
    	public function createPost()
    	{
-       $category = Category::orderBy('created_at','desc')->get();
+       $category = Category::orderBy('created_at', 'desc')->get();
    		 return view('posts.create', ['category' => $category]);
    	}
 
    	public function viewAllPosts()
    	{	
-   		/*$posts = DB::table('posts')
-   					->select('')
-   					->join('users','users.id','=','posts.user_id')
-   					->get();*/
-
    	  $posts = Post::orderBy('created_at','desc')
-                      ->where("status","=","Active")
+                      ->where("status", "Active")
                       ->paginate(5);
 
       $category = Category::orderBy('created_at','desc')->get();
 
-   		return view('welcome', ['posts' => $posts,'categories' => $category]);
+       return view('welcome', ['posts' => $posts,
+                               'categories' => $category,
+                               'category_name' => '']);
    	}
 
    	public function store(Request $request)
@@ -82,7 +79,9 @@ class postController extends Controller
       $category = Category::orderBy('created_at','desc')->get();
       $category_name = Category::where('id','=',$id)->get();
 
-      return view('welcome', ['posts' => $posts,'categories' => $category,'category_name'=>$category_name]);
+      return view('welcome', ['posts' => $posts,
+                              'categories' => $category,
+                              'category_name'=>$category_name]);
     }
 
    	public function viewPost($id)		//view single post

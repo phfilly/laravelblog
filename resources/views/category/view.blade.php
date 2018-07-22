@@ -1,4 +1,4 @@
-@extends('structure.top')       
+@include('structure.top')       
 	@include('structure.nav') 
 	@include('structure.messages')
 

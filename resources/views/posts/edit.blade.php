@@ -1,4 +1,4 @@
-@extends('structure.top')       
+@include('structure.top')       
 	@include('structure.nav') 
 	@extends('structure.messages')
 
@@ -19,8 +19,6 @@
 										<label>Title</label>
 										<input type='text' name='title' value='{{ $post->title }}' class="form-control" required/>
 
-										<br>
-
 										<small>
 											<span class='glyphicon glyphicon-time'></span> {{ date('M j, Y H:ia', strtotime($post->created_at)) }} by 
 											<a href="{{ url('/user/'.$post->user_id)}}">
@@ -38,12 +36,19 @@
 
 				                <div class="form-group">
 				                    <label>Article Status</label>
-				                    <br>
 				                      <label class="btn btn-success">
-				                           <input type="radio" name="status"  autocomplete="off" value='Active' checked> Active
+									  	@if( $post->status === "Disable" )
+										  <input type="radio" name="status"  autocomplete="off" value='Active' /> Active
+										@else
+										  <input type="radio" name="status"  autocomplete="off" value='Active' checked/> Active
+										@endif
 				                      </label>
 				                      <label class="btn btn-danger">
-				                        	<input type="radio" name="status" autocomplete="off" value='Disable'> Disable
+									 	@if( $post->status === "Disable" )
+										  <input type="radio" name="status"  autocomplete="off" value='Active' checked/> Disable
+										@else
+				                          <input type="radio" name="status" autocomplete="off" value='Disable'> Disable
+										@endif
 				                      </label>
 				                </div>
 
